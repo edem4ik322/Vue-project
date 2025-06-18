@@ -1,16 +1,11 @@
 <template>
-  <v-container>
-    <v-row justify="center">
-      <h1>Вход</h1>
-    </v-row>
-  </v-container>
+  <AuthLogin />
 </template>
 
 <script>
+import AuthLogin from '@/components/Auth/AuthLogin.vue'
+
 export default {
-  data () {
-    return {
-    }
-  }
+  components: { AuthLogin }
 }
 </script> 
