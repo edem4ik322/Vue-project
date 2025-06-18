@@ -17,9 +17,26 @@ export default {
     }
   },
   actions: {
-    registerUser({commit}, {email, password}) {
-      // Здесь должен быть запрос на сервер для регистрации
-      commit('setUser', new User(1, email, password))
+    async registerUser({commit}, {email, password}) {
+      commit('clearError', null, { root: true })
+      commit('setLoading', true, { root: true })
+      // Имитация запроса
+      let isRequestOk = true
+      let promise = new Promise(function(resolve) {
+        setTimeout(() => resolve('Done'), 1500);
+      });
+      if (isRequestOk) {
+        await promise.then(() => {
+          commit('setUser', new User(1, email, password))
+          commit('setLoading', false, { root: true })
+        })
+      } else {
+        await promise.then(() => {
+          commit('setLoading', false, { root: true })
+          commit('setError', 'Ошибка регистрации', { root: true })
+          throw new Error('Упс... Ошибка регистрации')
+        })
+      }
     }
   },
   getters: {
