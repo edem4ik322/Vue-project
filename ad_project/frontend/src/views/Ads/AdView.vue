@@ -16,7 +16,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="warning" color="orange">Edit</v-btn>
+            <modal-dialog></modal-dialog>
             <v-btn class="success" color="green">Buy</v-btn>
           </v-card-actions>
         </v-card>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import EditAdModal from './EditAdModal'
 export default {
   props: ['id'],
   computed: {
@@ -33,6 +34,9 @@ export default {
       const id = this.id
       return this.$store.getters.adById(id)
     }
+  },
+  components: {
+    'modal-dialog': EditAdModal
   }
 }
 </script> 
