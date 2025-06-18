@@ -37,6 +37,27 @@ export default {
           throw new Error('Упс... Ошибка регистрации')
         })
       }
+    },
+    async loginUser({commit}, {email, password}) {
+      commit('clearError', null, { root: true })
+      commit('setLoading', true, { root: true })
+      // Имитация запроса
+      let isRequestOk = false
+      let promise = new Promise(function(resolve) {
+        setTimeout(() => resolve('Done'), 1500);
+      });
+      if (isRequestOk) {
+        await promise.then(() => {
+          commit('setUser', new User(1, email, password))
+          commit('setLoading', false, { root: true })
+        })
+      } else {
+        await promise.then(() => {
+          commit('setLoading', false, { root: true })
+          commit('setError', 'Ошибка логина или пароля', { root: true })
+          throw new Error('Упс... Ошибка логина или пароля')
+        })
+      }
     }
   },
   getters: {
