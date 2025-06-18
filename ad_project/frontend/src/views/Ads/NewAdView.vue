@@ -67,12 +67,16 @@ export default {
       valid: false,
       title: "",
       description: "",
-      promo: true,
-      loading: false
+      promo: true
+    }
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading
     }
   },
   methods: {
-    createAd() {
+    async createAd() {
       if (this.$refs.form.validate()) {
         const ad = {
           title: this.title,
@@ -81,7 +85,12 @@ export default {
           src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
         }
         this.$store.dispatch('createAd', ad)
-        console.log(ad)
+          .then(() => {
+            this.$router.push("/list")
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     }
   }
