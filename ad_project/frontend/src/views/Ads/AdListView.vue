@@ -4,7 +4,7 @@
       <v-col cols="12" sm="8" lg="6">
         <h1 class="text--secondary mb-3 mt-3">My ads</h1>
         <v-card
-          v-for="ad in ads"
+          v-for="ad in myAds"
           :key="ad.id"
           class="mb-3"
           max-width="1000"
@@ -32,38 +32,9 @@
 
 <script>
 export default {
-  data () {
-    return {
-      ads:[
-        {
-          title:"First",
-          desc:"First Desc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam nunc, eget aliquam massa nisl quis neque. Proin ac neque nec massa cursus cursus.",
-          promo: true,
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-          id:"1"
-        },
-        {
-          title:"Second",
-          desc:"Second Desc",
-          promo: true,
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-          id:"2"
-        },
-        {
-          title:"Third",
-          desc:"Thitd Desc",
-          promo: true,
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-          id:"3"
-        },
-        {
-          title:"Fouth",
-          desc:"Fouth Desc",
-          promo: true,
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-          id:"4"
-        }
-      ]
+  computed: {
+    myAds(){
+      return this.$store.getters.myAds
     }
   }
 }
